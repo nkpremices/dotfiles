@@ -1,5 +1,5 @@
 return {
-  cmd = { "/Users/nkpremices/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
+  cmd = { "/Users/premicesk/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
   flags = {
     debounce_text_changes = 150,
   },
