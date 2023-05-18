@@ -1,3 +1,3 @@
-# nkpremices.nvim
+# nkpremices dotfiles
 
-My awesome progressive neovim setup
+This repo will house all my dotfiles
