@@ -49,3 +49,29 @@ which_key_map["h"] = {
   ["r"] = { '<cmd>lua require("harpoon.mark").rm_file()<cr>', "Remove file from bookmarks" },
   f = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
 }
+
+-- n_mode["<S-Down>"] = ":MoveLine(1)<CR>"
+-- n_mode["˚"] = ":MoveLine(-1)<CR>"
+-- n_mode["˙"] = ":MoveHChar(-1)<CR>"
+-- n_mode["¬"] = ":MoveHChar(1)<CR>"
+-- -- n_mode["<leader>wf"] = ":MoveWord(1)<CR>"
+-- -- n_mode["<leader>wb"] = ":MoveWord(-1)<CR>"
+
+-- -- Visual-mode commands
+-- v_mode["<A-j>"] = ":MoveBlock(1)<CR>"
+-- v_mode["<A-k>"] = ":MoveBlock(-1)<CR>"
+-- v_mode["<A-h>"] = ":MoveHBlock(-1)<CR>"
+-- v_mode["<A-l>"] = ":MoveHBlock(1)<CR>"
+
+which_key_map[","] = {
+  ":MoveLine(1)<CR>", "Move Text Line Up",
+}
+
+which_key_map["."] = {
+  ":MoveLine(-1)<CR>", "Move Text Line Down",
+}
+
+
+which_key_map[";"] = {
+  "ggVG", "Select All",
+}

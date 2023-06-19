@@ -92,5 +92,23 @@ lvim.plugins = {
         },
       }
     end
+  },
+  {
+    "fedepujol/move.nvim"
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end
+  },
+  {
+    "natecraddock/workspaces.nvim",
+    config = function()
+      require("workspaces").setup()
+    end
+  },
+  {
+    "APZelos/blamer.nvim"
   }
 }

@@ -24,10 +24,27 @@ lvim.format_on_save = {
 
 -- Lualine
 
-lvim.builtin.lualine.sections.lualine_c = { '%f' } -- Add file path in lualine
+lvim.builtin.lualine.sections.lualine_c = { 'filename' }                      -- Add file path in lualine
+lvim.builtin.lualine.sections.lualine_b = { 'branch', 'diff', 'diagnostics' } -- Add file path in lualine
 
 -- Format on save
 lvim.format_on_save.enabled = true
-lvim.format_on_save.pattern = { "*.lua", "*.py", "*.ex", "*.exs", "*.heex" }
+lvim.format_on_save.pattern = {
+  "*.lua",
+  "*.py",
+  "*.ex",
+  "*.exs",
+  "*.heex",
+  "*.ts",
+  "*.tsx",
+  "*.js",
+  "*.jsx",
+  "*.json"
+}
 
--- change icon of closed directory nvim tree (explorer)
+-- don't give |ins-completion-menu| messages
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false
+  }
+)

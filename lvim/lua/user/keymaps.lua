@@ -52,5 +52,17 @@ n_mode["N"] = "Nzzzv"
 vb_mode["<leader>p"] = "\"_dP"
 
 -- Move text up and down
--- v_mode["<A-j>"] = ":m .+1<CR>==gv"
--- v_mode["<A-k>"] = ":m .-2<CR>==gv"
+-- -- Normal-mode commands
+-- n_mode["<leader>."] = ":MoveLine(1)<CR>"
+-- n_mode["<leader>,"] = ":MoveLine(-1)<CR>"
+-- n_mode["˙"] = ":MoveHChar(-1)<CR>"
+-- n_mode["¬"] = ":MoveHChar(1)<CR>"
+-- -- n_mode["<leader>wf"] = ":MoveWord(1)<CR>"
+-- -- n_mode["<leader>wb"] = ":MoveWord(-1)<CR>"
+
+-- -- Visual-mode commands
+-- v_mode["<leader>."] = ":MoveBlock(1)<CR>"
+-- v_mode["<leader>,"] = ":MoveBlock(-1)<CR>"
+-- v_mode["<A-h>"] = ":MoveHBlock(-1)<CR>"
+-- v_mode["<A-l>"] = ":MoveHBlock(1)<CR>"
+--
