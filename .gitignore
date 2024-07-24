@@ -42,3 +42,5 @@ luac.out
 
 plugin/packer_compiled.lua
 pack/github
+.DS_Store
+

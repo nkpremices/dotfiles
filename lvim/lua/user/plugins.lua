@@ -62,10 +62,12 @@ lvim.plugins = {
     end
   },
   {
-    "christianchiarulli/harpoon",
+    "ThePrimeagen/harpoon",
     dependencies = { "nvim-lua/plenary.nvim" },
+    branch = "harpoon2",
     config = function()
-      reload("user.harpoon")
+      print("wt")
+      require("user.plugin_configs.harpoon")
     end
   },
   {
@@ -94,7 +96,7 @@ lvim.plugins = {
     end
   },
   {
-    "fedepujol/move.nvim"
+    "hinell/move.nvim"
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -102,13 +104,115 @@ lvim.plugins = {
       require("colorizer").setup()
     end
   },
-  {
-    "natecraddock/workspaces.nvim",
-    config = function()
-      require("workspaces").setup()
-    end
-  },
+  -- {
+  --   "natecraddock/workspaces.nvim",
+  --   config = function()
+  --     require("workspaces").setup()
+  --   end
+  -- },
   {
     "APZelos/blamer.nvim"
+  },
+  {
+    "Fildo7525/pretty_hover",
+    event = "LspAttach",
+    opts = {}
+  },
+  {
+    "davidosomething/format-ts-errors.nvim"
+  },
+  -- {
+  --   "kevinhwang91/nvim-ufo",
+  --   dependencies = {
+  --     "kevinhwang91/promise-async"
+  --   },
+  --   config = function()
+  --     reload("user.plugin_configs.ufo")
+  --   end
+
+  -- }
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  },
+  -- {
+  --   "m4xshen/hardtime.nvim",
+  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   opts = {}
+  -- },
+  -- lazy.nvim
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+    }
+  },
+  -- {
+  --   "elixir-tools/elixir-tools.nvim",
+  --   version = "*",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   config = function()
+  --     local elixir = require("elixir")
+  --     local elixirls = require("elixir.elixirls")
+
+  --     elixir.setup {
+  --       nextls = { enable = true },
+  --       credo = {},
+  --       elixirls = {
+  --         enable = true,
+  --         settings = elixirls.settings {
+  --           dialyzerEnabled = false,
+  --           enableTestLenses = false,
+  --         },
+  --         on_attach = function(client, bufnr)
+  --           vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+  --           vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+  --           vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+  --         end,
+  --       }
+  --     }
+  --   end,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  -- }
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      local home = vim.fn.expand("$HOME")
+      require("chatgpt").setup({
+        api_key_cmd = "cat /Users/premices/.config/.gpt.key.txt"
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_compiler_latexmk = {
+        executable = "latexmk",
+        options = {
+          '-pdf',
+          '-interaction=nonstopmode',
+          '-outdir=_out',
+        },
+      }
+    end
   }
 }

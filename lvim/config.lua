@@ -1,10 +1,7 @@
 vim.wo.fillchars = "vert: ,eob: "
 vim.o.fillchars = "eob: "
 
---[[
- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
- `lvim` is the global options object
-]]
+
 -- vim options
 reload("user.options")
 -- to disable icons and use a minimalist setup, uncomment the following

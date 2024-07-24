@@ -1,3 +1,10 @@
+function toggleFolds()
+  local winid = require("ufo").peekFoldedLinesUnderCursor()
+  if not winid then
+    vim.lsp.buf.hover()
+  end
+end
+
 local which_key_map = lvim.builtin.which_key.mappings
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
@@ -40,15 +47,15 @@ which_key_map["w"] = {
   ["c"] = { ":close<CR>", "Close current split window" },
 }
 
-which_key_map["h"] = {
-  name = " Harpoon",
-  ["h"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
-  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon Mark File" },
-  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
-  ["r"] = { '<cmd>lua require("harpoon.mark").rm_file()<cr>', "Remove file from bookmarks" },
-  f = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
-}
+-- which_key_map["h"] = {
+--   ["h"] = { '<cmd>lua require("harpoon.ui"):toggle_quick_menu()<cr>', "Harpoon UI" },
+--   name = " Harpoon",
+--   m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon Mark File" },
+--   ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
+--   [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
+--   ["r"] = { '<cmd>lua require("harpoon.mark").rm_file()<cr>', "Remove file from bookmarks" },
+--   f = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
+-- }
 
 -- n_mode["<S-Down>"] = ":MoveLine(1)<CR>"
 -- n_mode["˚"] = ":MoveLine(-1)<CR>"
@@ -64,11 +71,11 @@ which_key_map["h"] = {
 -- v_mode["<A-l>"] = ":MoveHBlock(1)<CR>"
 
 which_key_map[","] = {
-  ":MoveLine(1)<CR>", "Move Text Line Up",
+  ":MoveLine 1 <CR>", "Move Text Line Up",
 }
 
 which_key_map["."] = {
-  ":MoveLine(-1)<CR>", "Move Text Line Down",
+  ":MoveLine -1 <CR>", "Move Text Line Down",
 }
 
 

@@ -43,13 +43,17 @@ n_mode["<C-u>"] = "<C-u>zz"
 n_mode["n"] = "nzzzv"
 n_mode["N"] = "Nzzzv"
 
+
 -- n_mode["<leader>to"] = ":tabnew<CR>"   -- open new tab
 -- n_mode["<leader>tc"] = ":tabclose<CR>" -- close current tab
 -- n_mode["<leader>tn"] = ":tabn<CR>"     --  go to next tab
 -- n_mode["<leader>tp"] = ":tabp<CR>"     --  go to previous tab
 
 -- pasting without losing the content of the paste register
+-- v_mode["p"] = 'P'
+-- vb_mode["p"] = 'P'
 vb_mode["<leader>p"] = "\"_dP"
+vl_mode["<leader>p"] = "\"_dP"
 
 -- Move text up and down
 -- -- Normal-mode commands

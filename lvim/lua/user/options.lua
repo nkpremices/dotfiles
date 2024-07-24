@@ -3,7 +3,7 @@ local options = {
   shiftwidth = 2,        -- the number of spaces inserted for each indentation
   tabstop = 2,           -- insert 2 spaces for a tab
   relativenumber = true, -- set relative numbered lines
-  cursorcolumn = false   -- puts the vertical line
+  cursorcolumn = true    -- puts the vertical line
 }
 
 
@@ -18,7 +18,18 @@ vim.opt.iskeyword:append "-" -- hyphenated words recognized by searches
 lvim.log.level = "info"
 lvim.format_on_save = {
   enabled = true,
-  pattern = "*.lua",
+  pattern = {
+    "*.lua",
+    "*.py",
+    "*.ex",
+    "*.exs",
+    "*.heex",
+    "*.ts",
+    "*.tsx",
+    "*.js",
+    "*.jsx",
+    "*.json"
+  },
   timeout = 1000,
 }
 
@@ -29,18 +40,6 @@ lvim.builtin.lualine.sections.lualine_b = { 'branch', 'diff', 'diagnostics' } --
 
 -- Format on save
 lvim.format_on_save.enabled = true
-lvim.format_on_save.pattern = {
-  "*.lua",
-  "*.py",
-  "*.ex",
-  "*.exs",
-  "*.heex",
-  "*.ts",
-  "*.tsx",
-  "*.js",
-  "*.jsx",
-  "*.json"
-}
 
 -- don't give |ins-completion-menu| messages
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -48,3 +47,25 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     virtual_text = false
   }
 )
+
+-- Telescope
+
+local telescopeConf = {
+  layout_strategy = "horizontal",
+  layout_config = {
+    prompt_position = "top",
+    horizontal = {
+      mirror = false,
+      preview_width = 0.5,
+    },
+    vertical = {
+      mirror = false,
+    },
+    width = 0.75,
+    height = 0.85,
+    preview_cutoff = 120,
+  },
+}
+
+lvim.builtin.telescope.pickers.live_grep = telescopeConf;
+lvim.builtin.telescope.pickers.find_files = telescopeConf;
