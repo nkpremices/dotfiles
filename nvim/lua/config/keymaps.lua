@@ -13,6 +13,9 @@
 -- Quick save with Ctrl+S
 vim.keymap.set("n", "<C-s>", "<cmd>w<cr>", { desc = "Save file" })
 
+-- Disable LazyVim's default <leader>l mapping (Lazy UI) causing conflict with LSP keymaps
+pcall(vim.keymap.del, "n", "<leader>l")
+
 -- Clear search highlights
 vim.keymap.set("n", "<leader>nh", "<cmd>nohl<cr>", { desc = "Clear search highlights" })
 

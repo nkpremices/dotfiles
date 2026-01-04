@@ -8,6 +8,8 @@ return {
         ["<leader>/"] = nil,
         -- Disable LazyVim's default leader+space for file search
         ["<leader><space>"] = nil,
+        -- Disable LazyVim's default leader+l for Lazy UI (conflicts with LSP actions)
+        ["<leader>l"] = nil,
       },
     },
   },
