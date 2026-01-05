@@ -14,12 +14,24 @@ return {
             { "gr", vim.lsp.buf.references, desc = "References" },
             { "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
             { "gs", vim.lsp.buf.signature_help, desc = "Signature Help" },
-            
+
             -- Diagnostics
             { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-            { "<leader>lj", vim.diagnostic.goto_prev, desc = "Prev Diagnostic" },
-            { "<leader>lk", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
-            
+            {
+              "<leader>lj",
+              function()
+                vim.diagnostic.jump({ count = 1, float = true })
+              end,
+              desc = "Prev Diagnostic",
+            },
+            {
+              "<leader>lk",
+              function()
+                vim.diagnostic.jump({ count = -1, float = true })
+              end,
+              desc = "Next Diagnostic",
+            },
+
             -- LSP Actions
             { "<leader>lf", vim.lsp.buf.format, desc = "Format" },
             { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP Info" },
