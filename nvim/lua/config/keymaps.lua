@@ -30,15 +30,12 @@ vim.keymap.set("n", "<S-c>", "<cmd>bd<cr>", { desc = "Close buffer" })
 -- Normal mode: x, d, c go to black hole register
 vim.keymap.set("n", "x", '"_x', { desc = "Delete char (black hole)" })
 vim.keymap.set("n", "d", '"_d', { desc = "Delete (black hole)" })
-vim.keymap.set("n", "c", '"_c', { desc = "Change (black hole)" })
 
 -- Visual mode: d, c go to black hole register
 vim.keymap.set("v", "d", '"_d', { desc = "Delete (black hole)" })
-vim.keymap.set("v", "c", '"_c', { desc = "Change (black hole)" })
 
 -- Visual-block mode: d, c go to black hole register
 vim.keymap.set("x", "d", '"_d', { desc = "Delete (black hole)" })
-vim.keymap.set("x", "c", '"_c', { desc = "Change (black hole)" })
 
 -- ----------------------------------------------------------------------------
 -- Cursor Centering During Navigation
