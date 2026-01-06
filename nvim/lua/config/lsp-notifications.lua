@@ -12,33 +12,34 @@ local config = {
 function M.setup()
   -- Override vim.notify to filter out LSP errors when suppression is on
   local original_notify = vim.notify
-  
+
   vim.notify = function(msg, level, opts)
     opts = opts or {}
-    
+
     -- Check if it's an ERROR level message
     if config.suppress_errors and level == vim.log.levels.ERROR then
       -- Check if it looks like an LSP message
       -- Many LSPs set title to the server name
-      local is_lsp = opts.title and (
-        opts.title == "LSP" or 
-        opts.title == "vtsls" or 
-        opts.title == "tsserver" or
-        vim.tbl_contains(config.excluded_servers, opts.title)
-      )
-      
+      local is_lsp = opts.title
+        and (
+          opts.title == "LSP"
+          or opts.title == "vtsls"
+          or opts.title == "tsserver"
+          or vim.tbl_contains(config.excluded_servers, opts.title)
+        )
+
       -- Also check message content for common LSP keywords if title is missing
       if not is_lsp and msg then
         is_lsp = msg:match("LSP%[") or msg:match("Language server")
       end
-      
+
       if is_lsp then
         -- Silently ignore the error
         -- Optionally: log it to a file or special buffer instead of showing it
         return
       end
     end
-    
+
     return original_notify(msg, level, opts)
   end
 
@@ -51,7 +52,7 @@ function M.setup()
     end
     return original_window_show_message(err, result, ctx, config_overrides)
   end
-  
+
   -- Create toggle command
   vim.api.nvim_create_user_command("ToggleLspErrors", function()
     config.suppress_errors = not config.suppress_errors
