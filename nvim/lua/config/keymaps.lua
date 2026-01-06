@@ -169,4 +169,39 @@ end, { desc = "Terminal: NCDU" })
 -- NOTE: Configured in lua/plugins/harpoon.lua
 -- ----------------------------------------------------------------------------
 
+-- mini files
 
+-- keys = {
+--       {
+--         "<leader>ee",
+--         function()
+--           local path = vim.api.nvim_buf_get_name(0)
+--           -- If buffer is not valid or empty, use CWD
+--           if path == "" or not vim.loop.fs_stat(path) then
+--              path = vim.uv.cwd()
+--           end
+--           require("mini.files").open(path, true)
+--         end,
+--         desc = "Open mini.files (Directory of Current File)",
+--       },
+--       {
+--         "<leader>ec",
+--         function()
+--           require("mini.files").close()
+--         end,
+--         desc = "Close mini.files",
+--       },
+--     }
+
+vim.keymap.set("n", "<leader>ee", function()
+  local path = vim.api.nvim_buf_get_name(0)
+  -- If buffer is not valid or empty, use CWD
+  if path == "" or not vim.loop.fs_stat(path) then
+     path = vim.uv.cwd()
+  end
+  require("mini.files").open(path, true)
+end, { desc = "Open mini.files (Directory of Current File)" })
+
+vim.keymap.set("n", "<leader>ec", function()
+  require("mini.files").close()
+end, { desc = "Close mini.files" })

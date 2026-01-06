@@ -2,6 +2,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -30,6 +31,7 @@ return {
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
+      hijack_netrw_behavior = false,
       
       default_component_configs = {
         indent = {
