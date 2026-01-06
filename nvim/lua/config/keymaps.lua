@@ -129,6 +129,7 @@ vim.keymap.set("n", "<leader>tf", function()
   Snacks.terminal(nil, {
     win = {
       style = "float",
+      border = "rounded",
       width = 0.83,
       height = 0.83,
     },
