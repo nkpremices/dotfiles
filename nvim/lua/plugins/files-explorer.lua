@@ -4,7 +4,7 @@ return {
     windows = {
       preview = true,
       width_focus = 30,
-      width_preview = 30,
+      width_preview = 80,
     },
     options = {
       -- Whether to use for editing directories
@@ -18,4 +18,16 @@ return {
       reset = "", -- reset relies on <BS> by default, confusing correct backspace behavior
     },
   },
+  config = function(_, opts)
+    require("mini.files").setup(opts)
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesBufferCreate",
+      callback = function(args)
+        vim.keymap.set("n", "<CR>", function()
+          require("mini.files").go_in({ close_on_file = true })
+        end, { buffer = args.data.buf_id, desc = "Go in (Auto Close)" })
+      end,
+    })
+  end,
 }
