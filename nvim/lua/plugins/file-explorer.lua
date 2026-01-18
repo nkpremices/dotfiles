@@ -8,8 +8,8 @@ return {
     },
     options = {
       -- Whether to use for editing directories
-      -- Enabled to let mini.files handle directory opening (hijacking netrw)
-      use_as_default_explorer = true,
+      -- Disabled to prevent opening on launch, allowing workspace-restore to work
+      use_as_default_explorer = false,
     },
     mappings = {
       go_in = "<CR>",
