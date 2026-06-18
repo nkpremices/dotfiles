@@ -7,3 +7,5 @@ foo.*
 *.log
 data
 **lvim**
+.wspfiles
+.nvimlog

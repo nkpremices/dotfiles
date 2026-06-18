@@ -4,4 +4,5 @@ return {
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.linting.eslint" }, -- ESLint diagnostics
+  { import = "lazyvim.plugins.extras.lang.rust" }, -- Rust support (rustaceanvim, crates.nvim, etc.)
 }

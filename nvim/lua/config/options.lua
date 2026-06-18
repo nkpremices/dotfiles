@@ -83,3 +83,10 @@ vim.filetype.add({
     ["helmfile.*%.ya?ml"] = "helm",
   },
 })
+
+-- ----------------------------------------------------------------------------
+-- Rust Configuration
+-- Use bacon-ls for diagnostics (rust-analyzer for other LSP features)
+-- ----------------------------------------------------------------------------
+vim.g.lazyvim_rust_diagnostics = "bacon-ls"
+

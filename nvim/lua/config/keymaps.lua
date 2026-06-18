@@ -205,3 +205,60 @@ end, { desc = "Open mini.files (Directory of Current File)" })
 vim.keymap.set("n", "<leader>ec", function()
   require("mini.files").close()
 end, { desc = "Close mini.files" })
+
+-- ----------------------------------------------------------------------------
+-- Custom User Commands
+-- ----------------------------------------------------------------------------
+
+-- :Gcfp - Get current buffer file path relative to git root and copy to clipboard
+vim.api.nvim_create_user_command("Gcfp", function()
+  local current_file = vim.api.nvim_buf_get_name(0)
+  if current_file == "" then
+    vim.notify("No file name for current buffer", vim.log.levels.WARN, { title = "Gcfp Error" })
+    return
+  end
+  local git_dir = vim.fs.find(".git", { path = current_file, upward = true })[1]
+  if not git_dir then
+    vim.notify("No .git directory found upward", vim.log.levels.WARN, { title = "Gcfp Error" })
+    return
+  end
+  local git_root = vim.fs.dirname(git_dir)
+  local normalized_root = git_root
+  if not normalized_root:match("/$") then
+    normalized_root = normalized_root .. "/"
+  end
+  local rel_path = current_file
+  if current_file:sub(1, #normalized_root) == normalized_root then
+    rel_path = current_file:sub(#normalized_root + 1)
+  end
+  vim.fn.setreg("+", rel_path)
+  vim.notify("Copied relative path: " .. rel_path, vim.log.levels.INFO, { title = "Gcfp Successful" })
+end, { desc = "Copy current file path relative to git root" })
+
+-- :Gcwd - Get directory of current .wspfiles session file and copy to clipboard
+vim.api.nvim_create_user_command("Gcwd", function()
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local path = current_file ~= "" and vim.fs.dirname(current_file) or vim.uv.cwd()
+  local wsp_file = vim.fs.find(".wspfiles", { path = path, upward = true })[1]
+  local root_dir
+  if wsp_file then
+    root_dir = vim.fs.dirname(wsp_file)
+  else
+    -- Fallback to LazyVim root detection
+    local ok, lazy_root = pcall(function() return LazyVim.root.get() end)
+    if ok and lazy_root then
+      root_dir = lazy_root
+    else
+      root_dir = vim.uv.cwd()
+    end
+  end
+  vim.fn.setreg("+", root_dir)
+  vim.notify("Copied current working directory: " .. root_dir, vim.log.levels.INFO, { title = "Gcwd Successful" })
+end, { desc = "Copy directory where .wspfiles is located" })
+
+-- Abbreviations to allow lowercase :gcfp and :gcwd
+vim.cmd([[
+  cnoreabbrev <expr> gcfp ((getcmdtype() == ':' && getcmdline() == 'gcfp') ? 'Gcfp' : 'gcfp')
+  cnoreabbrev <expr> gcwd ((getcmdtype() == ':' && getcmdline() == 'gcwd') ? 'Gcwd' : 'gcwd')
+]])
+
